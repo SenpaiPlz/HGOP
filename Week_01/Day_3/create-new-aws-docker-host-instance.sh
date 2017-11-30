@@ -44,7 +44,7 @@ else
 	printf "${SECURITY_GROUP_NAME}.pem found!\n"
 fi
 
-printf "Creating Instance!\n\n"
+printf "Creating Instance!\n"
 INSTANCE_ID=$(aws ec2 run-instances --user-data file://${PWD}/provisioning/ec2-instance-init.sh --image-id ami-9398d3e0 --security-groups ${SECURITY_GROUP_NAME} --count 1 --instance-type t2.micro --key-name ${SECURITY_GROUP_NAME} --query 'Instances[0].InstanceId'  --output=text)
 aws ec2 wait --region eu-west-1 instance-running --instance-ids ${INSTANCE_ID}
-
+printf "Intsance created with id: ${INSTANCE_ID}\n"
