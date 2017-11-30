@@ -1,0 +1,17 @@
+version: "2"
+services:
+    my_page_counter_app:
+        image: senpaiplz/hashtagcoolrepo:${TAG}
+        ports:
+            - "80:3000"
+        links:
+            - my_redis_container
+    my_redis_container:
+        image: redis
+    postgres:
+        image: postgres:9.3
+        restart: always
+        environment:
+            - POSTGRES_USER=test
+            - POSTGRES_PASSWORD=test
+            - POSTGRES_DB=test_db
