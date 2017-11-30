@@ -1,6 +1,5 @@
 #!/bin/bash
 SECURITY_GROUP_NAME="test"
-export SECURITY_GROUP_NAME
 
 printf "Checking for ${SECURITY_GROUP_NAME}.pem ...\n"
 if [ ! -f ${PWD}/${SECURITY_GROUP_NAME}.pem ]; then
