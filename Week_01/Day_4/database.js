@@ -21,3 +21,29 @@ function initialize() {
 
 // give the postgres container a couple of seconds to setup.
 setTimeout(initialize, 10000);
+
+module.exports = {
+    insert: (name, insertDate, cb) => {
+        var client = getClient();
+        client.connect(() => {
+            client.query('INSERT INTO Item (Name, InsertDate) VALUES (\'' + name + '\', to_timestamp(' + insertDate/1000 + '));', (err) => {
+                client.end();
+                if(err)
+                    cb(err);
+		cb();
+            })
+        })
+    },
+    get: (cb) => {
+        var client = getClient();
+        client.connect(() => {
+            client.query('SELECT Name FROM Item ORDER BY InsertDate DESC LIMIT 10;', (err, data) => {
+                client.end();
+                if(err)
+                    cb(err);
+                else
+                    cb(data.rows.map(x => x.name));
+            })
+        })
+    }
+}

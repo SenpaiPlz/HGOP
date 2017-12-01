@@ -26,4 +26,20 @@ app.get('/', (req, res) => {
     }
 });
 
+app.get('/items', (req, res) => {
+    database.get((data) => {
+        res.statusCode = 200;
+	res.send(data);
+    })
+});
+
+app.post('/items/:name', (req, res) => {
+    var name = req.params.name;
+    database.insert(name, Date.now(), (err) => {
+        if(err)
+            console.log(err);
+        res.sendStatus(201);
+    });
+});
+
 app.listen(port);
