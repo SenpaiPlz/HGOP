@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Current dependancies
-dep="ncurses vim git"
+dep="vim git"
 if [ "$OSTYPE" = "linux-gnu" ]; then
 
 	#check if the os or arch release in etc is present
@@ -53,7 +53,7 @@ if [ "$OSTYPE" = "linux-gnu" ]; then
 		#Compute runtime
 		endtime=$(date +%s%N)
 		runtime=$((endtime-starttime))
-		runtime=$((runtime/1000))
+		runtime=$((runtime/1000000))
 		#Bid the user farewell!
 		printf "\nScipt completed in $runtime ms, have a good day!\n"
 		echo "[$(date -u)] - Sucess! $dep installed sucessfully" >> script.log
