@@ -26,18 +26,26 @@ app.get('/', (req, res) => {
     }
 });
 
+//GET url/items
 app.get('/items', (req, res) => {
+    // Call the database.get method implemented in database.js
     database.get((data) => {
+        // should never return an error as the query is hardcoded atm
         res.statusCode = 200;
-	res.send(data);
+	    res.send(data);
     })
 });
 
+//POST url/items/:name
 app.post('/items/:name', (req, res) => {
+    // get the name from the request
     var name = req.params.name;
+    // call the database.insert method implemented in database.js with the name and Date.now()
     database.insert(name, Date.now(), (err) => {
+        // Should never throw an error but check it anyways
         if(err)
             console.log(err);
+        // Send the statuscode 201 - created
         res.sendStatus(201);
     });
 });
