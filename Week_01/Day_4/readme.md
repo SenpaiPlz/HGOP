@@ -14,6 +14,6 @@ While these are the steps that are needed to be taken for pg to run in our appli
 ## How far did you get?
 I finished the assignment, and verified that it works using the curl commands in the assignment description.
 
-Here is the public dns for a running instance: ec2-34-253-226-120.eu-west-1.compute.amazonaws.com
+~~Here is the public dns for a running instance: ec2-34-253-226-120.eu-west-1.compute.amazonaws.com~~
  
-It has open port 80, and is running a docker image that contains the newest version of the app ( includes the postgres database and get/post routes ).
+~~It has open port 80, and is running a docker image that contains the newest version of the app ( includes the postgres database and get/post routes ).~~

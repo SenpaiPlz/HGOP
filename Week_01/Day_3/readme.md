@@ -19,6 +19,6 @@ There are a few gotcha's that I think should be mentioned.
 2. The scripts should be run from the provisioning folder.
 3. The create-new-aws-docker-host-instance.sh script will delete and re-create, the key-pair and security group with the name test, if test.pem is not present in the provisioning folder.
 
-Here is the public dns for a running instance: ec2-34-253-226-120.eu-west-1.compute.amazonaws.com
+~~Here is the public dns for a running instance: ec2-34-253-226-120.eu-west-1.compute.amazonaws.com~~
 
-It has open port 80, and is running a docker image that contains the newest version of the app ( includes the postgres database and get/post routes ).
+~~It has open port 80, and is running a docker image that contains the newest version of the app ( includes the postgres database and get/post routes ).~~
