@@ -1,0 +1,13 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "mysecretpassword",
+    "host": "localhost",
+    "database": "postgres",
+    "schema": "postgres",
+    "port": 5432,
+    "max": 10,
+    "idleTimeoutMillis": 30000
+  }
+}

@@ -1,0 +1,21 @@
+import inject from './common/framework/inject';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import './index.css';
+
+import AppContextModule from "./appContext";
+
+window.console.debug = window.console.log;
+
+
+const {App} = AppContextModule(
+    inject({
+        io:window.io,
+        env:process.env.NODE_ENV
+    })
+);
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
