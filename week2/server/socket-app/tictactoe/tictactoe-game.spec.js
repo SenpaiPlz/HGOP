@@ -224,5 +224,30 @@ fdescribe('Move command', function () {
             }
         ];
     });
+    it('should emit NotYourMove if attempting to move out of turn', function () {
+        when =
+            {
+                type: "PlaceMove",
+                user: {
+                    userName: "Gulli"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'O',
+                x: 0,
+                y: 0
+            };
+        then = [
+            {
+                type: "NotYourMove",
+                user: {
+                    userName: "Gulli"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29"
+            }
+        ];
+    });
+
 });
 
