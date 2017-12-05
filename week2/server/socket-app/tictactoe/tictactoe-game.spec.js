@@ -224,7 +224,8 @@ fdescribe('Move command', function () {
             }
         ];
     });
-    it('should emit NotYourMove if attempting to move out of turn', function () {
+
+    it('should emit NotYourMove if O attemptis to move out of turn', function () {
         when =
             {
                 type: "PlaceMove",
@@ -248,6 +249,44 @@ fdescribe('Move command', function () {
             }
         ];
     });
+
+    it('should emit NotYourMove if X attempts to move out of turn', function () {
+       
+        given.push({
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 0
+                });
+        when =
+            {
+                type: "PlaceMove",
+                user: {
+                    userName: "Gummi"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 1,
+                y: 1
+            };
+        then = [
+            {
+                type: "NotYourMove",
+                user: {
+                    userName: "Gummi"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+            }
+        ];
+    });
+
 
 });
 
