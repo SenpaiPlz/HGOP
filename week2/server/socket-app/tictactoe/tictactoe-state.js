@@ -1,6 +1,8 @@
 const _ = require('lodash');
 
-const gameState = {full: false};
+const gameState = { full: false,
+                    nextPlayIsX:  true
+                  };
 
 module.exports = function (injected) {
 
@@ -9,6 +11,11 @@ module.exports = function (injected) {
             switch(event.type){
                 case "JoinGame":
                     gameState.full = true;
+                    break;
+                case "PlaceMove":
+                    gameState.nextPlayIsX = !gameState.nextPlayIsX;
+                    break;
+                default: break
             }
         }
 
@@ -18,13 +25,18 @@ module.exports = function (injected) {
 
         function gameFull(){
             return gameState.full;
-        }        
+        }
+
+        function nextSide(){
+            return gameState.nextPlayIsX ? 'X' : 'O';
+        }
 
         processEvents(history);
 
         return {
             processEvents: processEvents,
-            gameFull: gameFull
+            gameFull: gameFull,
+            nextSide: nextSide
         }
     };
 };

@@ -58,6 +58,20 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
+                        if(gameState.nextSide() !== cmd.side)
+                        {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "NotYourMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
+                            return;
+
+                        }
+
+                        // if everything checks out
                         applyEvents([{
                             gameId: cmd.gameId,
                             type: "MovePlaced",
