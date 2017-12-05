@@ -124,7 +124,7 @@ fdescribe('join game command', function () {
         ];
     });
 
-    it('should emit FullGameJoinAttempted event when game full..implement this', function () {
+    it('should emit FullGameJoinAttempted event when game full...', function () {
         given = [{
             type: "GameCreated",
             user: {
