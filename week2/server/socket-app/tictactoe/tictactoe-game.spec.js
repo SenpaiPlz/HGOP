@@ -230,7 +230,7 @@ fdescribe('Move command', function () {
             {
                 type: "PlaceMove",
                 user: {
-                    userName: "Gulli"
+                    userName: "Gummi"
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29",
@@ -242,7 +242,7 @@ fdescribe('Move command', function () {
             {
                 type: "NotYourMove",
                 user: {
-                    userName: "Gulli"
+                    userName: "Gummi"
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29"
@@ -255,7 +255,43 @@ fdescribe('Move command', function () {
         given.push({
                     type: "PlaceMove",
                     user: {
-                        userName: "Gummi"
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 0
+                });
+        when =
+            {
+                type: "PlaceMove",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 1,
+                y: 1
+            };
+        then = [
+            {
+                type: "NotYourMove",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+            }
+        ];
+    });
+
+    it('should emit IllegalMove if player attempts to make a move on an already occupied tile', function () {
+        given.push({
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
                     },
                     name: "TheFirstGame",
                     timeStamp: "2014-12-02T11:29:29",
@@ -271,13 +307,13 @@ fdescribe('Move command', function () {
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29",
-                side: 'X',
-                x: 1,
-                y: 1
+                side: 'O',
+                x: 0,
+                y: 0
             };
         then = [
             {
-                type: "NotYourMove",
+                type: "IllegalMove",
                 user: {
                     userName: "Gummi"
                 },
@@ -286,7 +322,6 @@ fdescribe('Move command', function () {
             }
         ];
     });
-
 
 });
 
