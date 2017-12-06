@@ -1,18 +1,22 @@
 const _ = require('lodash');
 
-const gameState = { full: false,
-                    nextPlayIsX:  true
-                  };
-
 module.exports = function (injected) {
+    let gameState = undefined;
 
     return function (history) {
         function processEvent(event) {
             switch(event.type){
+                case "GameCreated":
+                    gameState = {   full: false,
+                                    nextPlayIsX:  true,
+                                    board: [['','',''],['','',''],['','','']]
+                                };
+
                 case "JoinGame":
                     gameState.full = true;
                     break;
                 case "PlaceMove":
+                    gameState.board[event.x][event.y] = event.side;
                     gameState.nextPlayIsX = !gameState.nextPlayIsX;
                     break;
                 default: break
@@ -28,7 +32,11 @@ module.exports = function (injected) {
         }
 
         function nextSide(){
-            return gameState.nextPlayIsX ? 'X' : 'O';
+            return gameState.nextPlayIsX === true ? 'X' : 'O';
+        }
+
+        function sqrIsEmpty(x,y){
+            return gameState.board[x][y] === '';
         }
 
         processEvents(history);
@@ -36,7 +44,8 @@ module.exports = function (injected) {
         return {
             processEvents: processEvents,
             gameFull: gameFull,
-            nextSide: nextSide
+            nextSide: nextSide,
+            sqrIsEmpty: sqrIsEmpty
         }
     };
 };

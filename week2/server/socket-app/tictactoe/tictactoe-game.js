@@ -71,6 +71,18 @@ module.exports = function(injected){
 
                         }
 
+                        if(!gameState.sqrIsEmpty(cmd.x, cmd.y))
+                        {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "IllegalMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
+                            return;    
+                        }
+                            
                         // if everything checks out
                         applyEvents([{
                             gameId: cmd.gameId,
