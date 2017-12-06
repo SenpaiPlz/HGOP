@@ -2,7 +2,10 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        echo $PWD
+        dir(srcDir)
+        {
+            sh 'srcDir/Week_01/Day_3/provisioning/create-new-aws-docker-host-instance.sh'
+        }
     }
     stage('Test') {
         echo 'Testing..'
