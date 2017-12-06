@@ -4,7 +4,7 @@ node {
         echo 'Building..'
         dir(srcDir)
         {
-            sh 'srcDir/Week_01/Day_3/provisioning/create-new-aws-docker-host-instance.sh'
+            sh './Week_01/Day_3/provisioning/create-new-aws-docker-host-instance.sh'
         }
     }
     stage('Test') {
